@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049842083096",
+    "project_id": "fir-greenforma",
+    "storage_bucket": "fir-greenforma.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049842083096:android:e0878045ba8af9ca402a6d",
+        "android_client_info": {
+          "package_name": "com.example.greenforma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049842083096-q0m7dt1gpgdi30fu2gkt9f3d2gf0fm38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5cT-lVsu4iBxZ2CrXnheaNlCwPCsf6cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049842083096-q0m7dt1gpgdi30fu2gkt9f3d2gf0fm38.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
