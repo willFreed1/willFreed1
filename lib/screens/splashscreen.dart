@@ -44,13 +44,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Welcome, you will be redirected soon !!'),
-          ],
-        ),
+      body: (
+        Container(
+          child: Center(child: Text(''),),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: new NetworkImage('https://images.assetsdelivery.com/compings_v2/nad1992/nad19921505/nad1992150500013.jpg'),
+
+            )
+          ),
+        )
       ),
     );
   }
