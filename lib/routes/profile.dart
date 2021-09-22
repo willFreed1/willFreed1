@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:greenforma/screens/homescreen.dart';
 import 'package:greenforma/routes/settings.dart';
@@ -19,6 +20,22 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+
+  var user;
+  Future <void> getUserData() async{
+    var userData = await FirebaseAuth.instance.currentUser;
+    setState(() {
+      user = userData;
+      print(userData.uid);
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    getUserData();
+  }
+
   bool showPassword = false;
   @override
   Widget build(BuildContext context) {
@@ -115,8 +132,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "hamza benjeddi", false),
-              buildTextField("E-mail", "ben@gmail.com", false),
+              buildTextField("User Name", "admin", false),
+              user == null?
+                  buildTextField("Email","",false):
+                  buildTextField(user.email,"",false),
               buildTextField("Password", "********", true),
               buildTextField("Location", "Maroc", false),
               SizedBox(
@@ -129,7 +148,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     padding: EdgeInsets.symmetric(horizontal: 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {},
+                    onPressed: () {
+
+                     /* Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));*/
+                    },
                     child: Text("CANCEL",
                         style: TextStyle(
                             fontSize: 14,

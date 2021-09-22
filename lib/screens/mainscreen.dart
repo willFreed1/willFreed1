@@ -19,100 +19,188 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("LOGIN / SIGN UP"),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 50,),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 50,
+                    ),
+                    child: Text('Green',
+                        style: TextStyle(
+                            fontSize: 80.0, fontWeight: FontWeight.bold)),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(0.0, 110.0, 0.0, 0.0),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 80,
+                    ),
+                    child: Text('Forma',
+                        style: TextStyle(
+                            fontSize: 80.0, fontWeight: FontWeight.bold)),
+                  ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(230.0, 115.0, 0.0, 0.0),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 90,
+                    ),
+                    child: Text('.',
+                        style: TextStyle(
+                            fontSize: 80.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green)),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0),
               child: TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  hintText: "EMAIL...",
-                ),
+                    labelText: 'EMAIL',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green))),
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 50,),
+              padding: EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0),
               child: TextFormField(
                 controller: usernameController,
                 decoration: InputDecoration(
-                  hintText: "USERNAME...",
-                ),
+                    labelText: 'USERNAME',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green))),
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 50,),
+              padding: EdgeInsets.only(top: 0.0, left: 20.0, right: 20.0),
               child: TextFormField(
                 controller: passwordController,
                 decoration: InputDecoration(
-                  hintText: "PASSWORD...",
-                ),
+                    labelText: 'PASSWORD',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green))),
                 obscureText: true,
               ),
             ),
+            SizedBox(height: 30.0),
             Container(
-              height: 40,
-              width: MediaQuery.of(context).size.width / 3,
-              color: Colors.blue,
-              child: FlatButton(
-                onPressed: () async {
-                  final String username = usernameController.text.trim();
-                  final String password = passwordController.text.trim();
+              margin: EdgeInsets.symmetric(
+                horizontal: 150,
+              ),
+              child: Material(
+                borderRadius: BorderRadius.circular(20.0),
+                shadowColor: Colors.greenAccent,
+                color: Colors.green,
+                elevation: 7.0,
+                child: FlatButton(
+                  onPressed: () async {
+                    final String username = usernameController.text.trim();
+                    final String password = passwordController.text.trim();
 
-                  if(username.isEmpty){
-                    print("Username is Empty");
-                  } else {
-                    if(password.isEmpty){
-                      print("Password is Empty");
+                    if (username.isEmpty) {
+                      print("Username is Empty");
                     } else {
-                      QuerySnapshot snap = await FirebaseFirestore.instance.collection("users")
-                          .where("username", isEqualTo: username).get();
-                      context.read<AuthService>().login(
-                        snap.docs[0]['email'],
-                        password,
-                      );
+                      if (password.isEmpty) {
+                        print("Password is Empty");
+                      } else {
+                        QuerySnapshot snap = await FirebaseFirestore.instance
+                            .collection("users")
+                            .where("username", isEqualTo: username)
+                            .get();
+                        context.read<AuthService>().login(
+                          snap.docs[0]['email'],
+                          password,
+                        );
+                      }
                     }
-                  }
-                },
-                child: Text("LOG IN"),
+                  },
+                  child: Text(
+                    "LOG IN",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat'),
+                  ),
+                ),
               ),
             ),
+            SizedBox(height: 20.0),
             Container(
-              height: 40,
-              width: MediaQuery.of(context).size.width / 3,
-              color: Colors.red,
-              child: FlatButton(
-                onPressed: () {
-                  final String email = emailController.text.trim();
-                  final String username = usernameController.text.trim();
-                  final String password = passwordController.text.trim();
+              height: 40.0,
+              color: Colors.transparent,
+              margin: EdgeInsets.symmetric(
+                horizontal: 150,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                        width: 1.0),
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: FlatButton(
+                  onPressed: () {
+                    final String email = emailController.text.trim();
+                    final String username = usernameController.text.trim();
+                    final String password = passwordController.text.trim();
 
-                  if(email.isEmpty){
-                    print("Email is Empty");
-                  } else {
-                    if(password.isEmpty){
-                      print("Password is Empty");
+                    if (email.isEmpty) {
+                      print("Email is Empty");
                     } else {
-                      context.read<AuthService>().signUp(
-                        email,
-                        password,
-                        "user",
-                        username,
-                      ).then((value) async {
-                        User user = FirebaseAuth.instance.currentUser;
+                      if (password.isEmpty) {
+                        print("Password is Empty");
+                      } else {
+                        context
+                            .read<AuthService>()
+                            .signUp(
+                          email,
+                          password,
+                          "user",
+                          username,
+                        )
+                            .then((value) async {
+                          User user = FirebaseAuth.instance.currentUser;
 
-                        await FirebaseFirestore.instance.collection("users").doc(user.uid).set({
-                          'uid': user.uid,
-                          'email': email,
-                          'username': username,
-                          'password': password,
-                          'role': 'user',
+                          await FirebaseFirestore.instance
+                              .collection("users")
+                              .doc(user.uid)
+                              .set({
+                            'uid': user.uid,
+                            'email': email,
+                            'username': username,
+                            'password': password,
+                            'role': 'user',
+                          });
                         });
-                      });
+                      }
                     }
-                  }
-                },
-                child: Text("SIGN UP"),
+                  },
+                  child: Text(
+                    "Sign up !",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat'),
+                  ),
+                ),
               ),
             ),
           ],

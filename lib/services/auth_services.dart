@@ -10,6 +10,7 @@ class AuthService {
 
   AuthService(this._auth);
 
+
   Stream<User> get authStateChanges => _auth.idTokenChanges();
 
   Future<String> login(String email, String password) async {

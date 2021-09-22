@@ -1,47 +1,60 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
-import 'package:greenforma/screens/createuserscreen.dart';
-import 'package:greenforma/screens/edituserdata.dart';
 
 
- class Partnership extends StatelessWidget {
+class EditProfilPage extends StatefulWidget {
   @override
+  _EditProfilPageState createState() => _EditProfilPageState();
+}
 
+class _EditProfilPageState extends State<EditProfilPage> {
+  bool pressed = false;
 
- /* static QuerySnapshot snap =  FirebaseFirestore.instance.collection('users').where('email', isEqualTo: "frixwillis@gmail.com");
-  setState()( {
-  email = userEmail;
-  role = snap.docs[0]['role'];
-  password = snap.docs[0]['password'];
+  var user;
 
-  ableToEdit = true;
-  });*/
-  Future <QuerySnapshot> querySnapshot  =  FirebaseFirestore.instance.collection("users").where('email', isEqualTo: "frixwillis@gmail.com").get();
- get uid => querySnapshot;
+  Future <void> getUserData() async{
+    var userData = await FirebaseAuth.instance.currentUser;
+    setState(() {
+      user = userData;
+    });
+  }
 
+  @override
+  void initState(){
+    super.initState();
+    getUserData();
+  }
 
 
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('partnerships'),
+          title: Text('BarCode'),
           centerTitle: true,
           backgroundColor: Colors.green,
         ),
+    body: ListView(
+      children: <Widget>[
+        pressed ?(
+    SfBarcodeGenerator(
+      value:user.email +"  " +user.uid + "  ",
+      symbology: QRCode(),
+      showValue: true,
+      textSpacing: 15,
+    ))
 
-        body: Center(
+            : SizedBox(),
+        RaisedButton(
+          child: Text("Generate a Bar Code"),
+          onPressed: () {
 
-          child: Container(
-            height: 200,
-            child: SfBarcodeGenerator(
-              value: uid.runtimeType.toString(),
-              symbology: QRCode(),
-              showValue: true,
-              textSpacing: 15,
-            ),
-          ),
-        ),
-      );
+            setState(() {
+              pressed = true;
+            });
+          },
+        )
+      ],
+    ),
+  );
 }

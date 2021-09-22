@@ -39,7 +39,7 @@ class NavDrawer extends StatelessWidget {
             onTap: () => {selectItem(context, 1)},
           ),
           ListTile(
-            leading: Icon(Icons.qr_code_2),
+            leading: Icon(Icons.person),
             title: Text('Volunteer'),
             onTap: () => {selectItem(context, 2)},
           ),
@@ -54,8 +54,8 @@ class NavDrawer extends StatelessWidget {
             onTap: () => {selectItem(context, 4)},
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Partnership'),
+            leading: Icon(Icons.qr_code_2),
+            title: Text('BarCode'),
             onTap: () => {selectItem(context, 5)},
           ),
           ListTile(
@@ -98,7 +98,7 @@ class NavDrawer extends StatelessWidget {
     switch (i) {
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FormStructure(),
+          builder: (context) => formingStruc(),
         ));
         break;
     }
@@ -112,7 +112,7 @@ class NavDrawer extends StatelessWidget {
     switch (i) {
       case 5:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Partnership(),
+          builder: (context) => EditProfilPage(),
         ));
         break;
     }
