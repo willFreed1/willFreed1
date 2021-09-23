@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 
 class GreenArea extends StatelessWidget {
   List<String> names = <String>[
-    'speed',
-    'speed',
-    'speed',
-    'speed',
-    'speed',
+    'Marina Shopping Center',
+    'Royal Golf Anfa',
+    'Ancienne Medina',
+    'Sindibad',
+    'Parc Isesco Murdokh',
   ];
   List<String> images = <String>[
-    'assets/greenforma.PNG',
-    'assets/greenforma.PNG',
-    'assets/greenforma.PNG',
-    'assets/greenforma.PNG',
-    'assets/greenforma.PNG',
+    'assets/marina.jpg',
+    'assets/golfAnfa.jpg',
+    'assets/oldTown.jpg',
+    'assets/sindibad.jpg',
+    'assets/murdokh.jpg',
   ];
-  List<int> prices = <int>[
-    100,
-    200,
-    300,
-    4,
-    5,
+  List<String> prices = <String>[
+    'marina shopping center',
+    'Royal Golf Anfa',
+    'Ancienne Medina',
+    'a parc for everyone',
+    'Parc Isesco Murdokh',
+
   ];
 
   @override
@@ -38,30 +39,37 @@ class GreenArea extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      width: 200,
+                        width: 200,
                         child: Image.asset(images[index], fit: BoxFit.fill)),
                     Padding(
                       padding: const EdgeInsets.only(left: 30),
                       child: Column(
-                          children: [
-                             Text (names[index],),
-                             SizedBox(
-                               height: 6,
-                             ),
-                            Text (prices[index].toString(),),
-                            SizedBox(
-                              height: 6,
-                            ),
-                          ],
+                        children: [
+                          Text(
+                            names[index],
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Text(
+                            prices[index].toString(),
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                        ],
                       ),
                     )
                   ],
                 ),
               );
             },
-            itemCount: names.length, separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(height: 15,);
-          },
+            itemCount: names.length,
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 15,
+              );
+            },
           ),
         ),
       );
